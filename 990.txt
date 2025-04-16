@@ -148,3 +148,102 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <limits>
+#include <algorithm>
+
+using namespace std;
+
+const int INF = numeric_limits<int>::max();
+
+struct Edge {
+    int src, dest, weight;
+};
+
+// Safe recursive path printing (detects cycles)
+void printPath(int vertex, vector<int>& parent, vector<bool>& visited) {
+    if (visited[vertex]) {
+        cout << " (cycle detected)";
+        return;
+    }
+    visited[vertex] = true;
+
+    if (parent[vertex] == -1) {
+        cout << vertex + 1;
+        return;
+    }
+
+    printPath(parent[vertex], parent, visited);
+    cout << " " << vertex + 1;
+}
+
+int main() {
+    int V;
+    cin >> V;
+
+    vector<vector<int>> adjMatrix(V, vector<int>(V));
+    vector<Edge> edges;
+
+    // Read adjacency matrix and build edge list
+    for (int i = 0; i < V; ++i) {
+        for (int j = 0; j < V; ++j) {
+            cin >> adjMatrix[i][j];
+            if (adjMatrix[i][j] != 0) {
+                edges.push_back({i, j, adjMatrix[i][j]});
+            }
+        }
+    }
+
+    int src;
+    cin >> src;
+    src--; // Convert to 0-based index
+
+    vector<int> dist(V, INF);
+    vector<int> parent(V, -1);
+    dist[src] = 0;
+
+    // Bellman-Ford algorithm
+    for (int i = 1; i < V; ++i) {
+        for (Edge e : edges) {
+            if (dist[e.src] != INF && dist[e.src] + e.weight < dist[e.dest]) {
+                dist[e.dest] = dist[e.src] + e.weight;
+                parent[e.dest] = e.src;
+            }
+        }
+    }
+
+    // Negative weight cycle detection
+    for (Edge e : edges) {
+        if (dist[e.src] != INF && dist[e.src] + e.weight < dist[e.dest]) {
+            cout << "Graph contains a negative weight cycle" << endl;
+            return 0;
+        }
+    }
+
+    // Output shortest paths and distances
+    cout << "Shortest paths from source vertex " << src + 1 << ":\n";
+    for (int i = 0; i < V; ++i) {
+        vector<bool> visited(V, false); // Reset for each vertex
+        printPath(i, parent, visited);
+        cout << " : ";
+        if (dist[i] == INF)
+            cout << "INF";
+        else
+            cout << dist[i];
+        cout << endl;
+    }
+
+    return 0;
+}
