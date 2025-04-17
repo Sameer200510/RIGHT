@@ -247,3 +247,102 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.io.*;
+
+public class SimplePalindromeCounter {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+        String line;
+        int lineNumber = 1;
+
+        while ((line = reader.readLine()) != null) {
+            String[] words = line.split(" ");
+            int count = 0;
+
+            for (String word : words) {
+                if (isPalindrome(word)) {
+                    count++;
+                }
+            }
+
+            System.out.println("Line " + lineNumber + ": " + count + " palindrome(s)");
+            lineNumber++;
+        }
+
+        reader.close();
+    }
+
+    public static boolean isPalindrome(String word) {
+        word = word.toLowerCase();
+        int i = 0, j = word.length() - 1;
+
+        while (i < j) {
+            if (word.charAt(i) != word.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return word.length() > 0; // Only count non-empty palindromes
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.io.*;
+
+public class DebarCheck {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("students.txt"));
+        BufferedWriter debaredWriter = new BufferedWriter(new FileWriter("debared.txt"));
+        BufferedWriter notDebaredWriter = new BufferedWriter(new FileWriter("not_debared.txt"));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] data = line.split(" ");
+            int attendance = Integer.parseInt(data[4]);
+
+            if (attendance < 70) {
+                debaredWriter.write(line);
+                debaredWriter.newLine();
+            } else {
+                notDebaredWriter.write(line);
+                notDebaredWriter.newLine();
+            }
+        }
+
+        reader.close();
+        debaredWriter.close();
+        notDebaredWriter.close();
+
+        System.out.println("Debared and not-debared student lists generated successfully.");
+    }
+}
