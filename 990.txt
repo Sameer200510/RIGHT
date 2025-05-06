@@ -567,4 +567,34 @@ public class EvenPositionPrinter extends Thread {
     }
 }
 
+class WordPrinter extends Thread {
+    private String word;
+    private String threadName;
+
+    public WordPrinter(String threadName, String word) {
+        this.threadName = threadName;
+        this.word = word;
+    }
+
+    @Override
+    public void run() {
+        for (char c : word.toCharArray()) {
+            System.out.println(threadName + "[" + c + "]");
+            try {
+                Thread.sleep(1000); // pause for 1000 ms
+            } catch (InterruptedException e) {
+                System.out.println(threadName + " was interrupted.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Thread t1 = new WordPrinter("T1", "HELLO");
+        Thread t2 = new WordPrinter("T2", "WORLD");
+
+        t1.start();
+        t2.start();
+    }
+}
+
 
