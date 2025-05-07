@@ -598,3 +598,63 @@ class WordPrinter extends Thread {
 }
 
 
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Activity {
+    int index;
+    int start;
+    int end;
+};
+
+// Compare activities based on end time
+bool compare(Activity a, Activity b) {
+    return a.end < b.end;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> start(n), end(n);
+    for (int i = 0; i < n; i++)
+        cin >> start[i];
+    for (int i = 0; i < n; i++)
+        cin >> end[i];
+
+    vector<Activity> activities(n);
+    for (int i = 0; i < n; i++) {
+        activities[i].index = i + 1; // 1-based index
+        activities[i].start = start[i];
+        activities[i].end = end[i];
+    }
+
+    // Sort activities by finishing time
+    sort(activities.begin(), activities.end(), compare);
+
+    vector<int> selected;
+    int last_end = 0;
+
+    for (auto activity : activities) {
+        if (activity.start >= last_end) {
+            selected.push_back(activity.index);
+            last_end = activity.end;
+        }
+    }
+
+    cout << "No. of non-conflicting activities: " << selected.size() << endl;
+    cout << "List of selected activities: ";
+    for (int i = 0; i < selected.size(); i++) {
+        cout << selected[i];
+        if (i != selected.size() - 1) cout << ", ";
+    }
+    cout << endl;
+
+    return 0;
+}
