@@ -1,3 +1,38 @@
+public class MultiThreads {
+    public static void main(String[] args) {
+        // CS thread
+        Thread cs = new Thread(() -> {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("CS Thread - Count: " + i);
+                try {
+                    Thread.sleep(500);
+                } catch (Exception e) {}
+            }
+        });
+
+        // IT thread
+        Thread it = new Thread(() -> {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("IT Thread - Count: " + i);
+                try {
+                    Thread.sleep(500);
+                } catch (Exception e) {}
+            }
+        });
+
+        cs.start();
+        it.start();
+    }
+}
+
+
+
+
+
+
+
+
+
 #include <iostream>
 #include <vector>
 #include <limits.h>
