@@ -17,7 +17,7 @@ class q1
 		int count1=0,count2=0;
 		Scanner sr  = new Scanner(System.in);
 		System.out.println("Enter the sentence : ");
-		String str;
+		String str; 
 		str = sr.nextLine();
 		String[] arr = str.split(" ");
 		for(int i=0;i < arr.length;i++)
