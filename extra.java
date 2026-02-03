@@ -8,7 +8,6 @@ public class extra {
 
 
 
-
 import java.util.Scanner;
 class q1
 {
