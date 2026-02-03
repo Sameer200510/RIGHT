@@ -21,4 +21,41 @@ class q1
 		System.out.println("Count of vowels : "+count1);
 		System.out.println("Count of consonants : "+count2);
 	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Rust will be a very crutial phase so we will start with python only and after that we will working on to update to rust
+
+
+
+
+
+
