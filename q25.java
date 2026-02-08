@@ -6,6 +6,8 @@ class InvalidNameException extends Exception
         super(msg);
     }
 }
+
+
 class InvalidEmployeeIdException extends Exception 
 {
     public InvalidEmployeeIdException(String msg) 
