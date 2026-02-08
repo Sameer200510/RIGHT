@@ -39,4 +39,5 @@ public class q26
         }
         sc.close();
     }
+
 }

@@ -1,4 +1,6 @@
-import java.util.Scanner;
+
+
+ import java.util.Scanner;
 class work
 {
     public static void main(String st[])
