@@ -54,6 +54,9 @@ class q1
 
 
 
+
+
+
 //Rust will be a very crutial phase so we will start with python only and after that we will working on to update to rust
 
 
