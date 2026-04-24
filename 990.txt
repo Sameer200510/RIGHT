@@ -807,22 +807,8 @@ int main() {
     return 0;
 }
 
-https://limewire.com/d/t7bNQ#yEMcSLiwMI
 
 
 
 
 
-https://limewire.com/d/oY53Y#fIGpJDB8bt
-
-
-
-
-
-
-
-
-ACCESS KEY : gh0st_1n_th3_l3dg3r 
-OPERATOR ID : TREVOR_P 
-FLAG 1: CTF{gh0st_l3dg3r_0p3r@t0r_tr3v0r} 
-FLAG 2: CTF{l3st3r_w@s_0p3r@t0r_c_@ll_@l0ng} 
