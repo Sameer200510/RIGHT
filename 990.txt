@@ -1,4 +1,72 @@
 <?php
+$conn = mysqli_connect("localhost", "root", "");
+
+mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS GEU");
+mysqli_select_db($conn, "GEU");
+
+mysqli_query($conn, "CREATE TABLE IF NOT EXISTS contacts (
+    name VARCHAR(100),
+    phone VARCHAR(15)
+)");
+
+if (isset($_POST['submit'])) {
+
+    $name = $_POST['name'];
+
+    foreach ($_POST['phone'] as $p) {
+        if ($p != "") {
+            mysqli_query($conn, "INSERT INTO contacts(name, phone) 
+            VALUES('$name', '$p')");
+        }
+    }
+
+    echo "<h3>Stored Data:</h3>";
+
+    $res = mysqli_query($conn, "SELECT * FROM contacts WHERE name='$name'");
+
+    while ($row = mysqli_fetch_assoc($res)) {
+        echo "Name: " . $row['name'] . 
+        " - Phone: " . $row['phone'] . "<br>";
+    }
+
+    exit();
+}
+?>
+
+<html>
+<body>
+
+<form method="post">
+
+Name:
+<input type="text" name="name" required><br><br>
+
+Phone 1:
+<input type="text" name="phone[]"><br><br>
+
+Phone 2:
+<input type="text" name="phone[]"><br><br>
+
+Phone 3:
+<input type="text" name="phone[]"><br><br>
+
+<input type="submit" name="submit" value="Save">
+
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<?php
 // Step 1: Write sentence into file
 $text = "php is easy php is powerful and easy";
 
