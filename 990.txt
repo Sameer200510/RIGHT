@@ -1,3 +1,41 @@
+<?php
+// Step 1: Write sentence into file
+$text = "php is easy php is powerful and easy";
+
+file_put_contents("input.txt", $text);
+
+// Step 2: Read file content
+$content = file_get_contents("input.txt");
+
+// Step 3: Convert sentence into array
+$words = explode(" ", $content);
+
+// Step 4: Remove duplicate words
+$uniqueWords = array_unique($words);
+
+// Step 5: Convert array back to string
+$result = implode(" ", $uniqueWords);
+
+// Step 6: Store in new file
+file_put_contents("output.txt", $result);
+
+// Step 7: Display output
+echo "Original Sentence: " . $content . "<br><br>";
+echo "After Removing Duplicates: " . $result;
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class MultiThreads {
     public static void main(String[] args) {
         // CS thread
